@@ -23,11 +23,12 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
             'phone' => $request->phone,
             'role' => $request->role ?? 'pengunjung',
             'status' => $request->status ?? 'active',
         ]);
+
         return response()->json($user);
     }
 
@@ -58,22 +59,23 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-
         if (!$user) {
             return response()->json([
                 'message' => 'Email tidak ditemukan'
             ], 404);
         }
-
         if (!Hash::check($request->password, $user->password)) {
             return response()->json([
                 'message' => 'Password salah'
             ], 401);
         }
+        $user->tokens()->delete();
+        $token = $user->createToken('bookmate-token')->plainTextToken;
 
         return response()->json([
             'message' => 'Login berhasil',
-            'user' => $user
+            'user' => $user,
+            'token' => $token
         ]);
     }
 }
