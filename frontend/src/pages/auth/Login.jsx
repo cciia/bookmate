@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import logoBookmate from '../assets/images//logo/logo-bookmate.png';
+import logoBookmate from '../../assets/images//logo/logo-bookmate.png';
 import { FiMail, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 
 
@@ -49,23 +49,27 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
-        <div className="text-center mb-8">
+    <div
+      className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center relative"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da')",}}>
+      <div className="w-full max-w-xl bg-white/95 backdrop-blur-sm rounded-xl shadow-xl px-8 py-5">
+        <div className="text-center mb-4">
           <div className="flex justify-center mb-2">
            <div className="flex justify-center">
                 <img
                     src={logoBookmate}
                     alt="BookMate Logo"
-                    className="h-30 w-auto"/>
+                    className="h-16 w-auto"/>
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-black mb-2">BookMate</h1>
+          <h1 className="text-2xl font-bold text-black mb-1">BookMate</h1>
           <p className="text-gray-500 text-sm">Your library. Anytime. Anywhere.</p>
         </div>
-        <form onSubmit={handleLogin} className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-3">
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md text-sm">
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-2 rounded-md text-sm">
               {error}
             </div>
           )}
@@ -112,7 +116,7 @@ const Login = () => {
             Login
           </button>
         </form>
-        <div className="text-center mt-6">
+        <div className="text-center mt-4">
           <p className="text-sm text-gray-600">
             Belum punya akun? <a href="/register" className="text-black font-medium hover:underline">Daftar di sini</a>
           </p>

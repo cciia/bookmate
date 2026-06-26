@@ -1,6 +1,8 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Login from "./pages/Login";
+import Login from "./pages/auth/Login";
 // import Register from "./pages/Register";
+import Dashboard from "./pages/dashboard/Dashboard";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   return (
@@ -14,8 +16,8 @@ function App() {
       {/* register */}
       {/* <Route path="/register" element={<Register />} /> */}
 
-       {/* dashboard */}
-      <Route path="/dashboard" element={<h1>Dashboard BookMate</h1>} />
+      {/* dashboard */}
+      <Route path="/dashboard" element={<ProtectedRoute> <Dashboard /></ProtectedRoute>}/>
     </Routes>
   );
 }
